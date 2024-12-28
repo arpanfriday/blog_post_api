@@ -31,6 +31,8 @@ const userSchema = new mongoose.Schema({
     }
 })
 
+// A Mongoose middleware function that runs before saving a document.
+
 userSchema.pre('save', async function (next) {
     try {
         if (this.isNew) {

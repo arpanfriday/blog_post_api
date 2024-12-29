@@ -17,11 +17,13 @@ router.post('/login', async (req, res) => {
             ]
         }
     );
-    if (!user) {
+    if (!user)
         throw createError.NotFound('User not registered');
-    } else {
-        res.send('login proceed')
-    }
+    const result = await user.validatePassword(req.body.password);
+    if (!result)
+        throw createError.Unauthorized('Failed to authenticate. Please retry');
+
+    res.send(result);
 })
 
 module.exports = router;

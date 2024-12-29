@@ -21,6 +21,7 @@ app.use("/", require("./server/routes/posts/updatePost"))
 app.use("/", require("./server/routes/posts/getAllPosts"))
 
 app.use("/", require("./server/routes/users/register"));
+app.use("/", require("./server/routes/users/login"));
 
 app.listen(PORT, () => {
     console.log(`Server starting on port ${PORT}`);

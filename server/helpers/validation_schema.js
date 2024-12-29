@@ -17,4 +17,13 @@ function validateUser(user) {
     return schema.validate(user);
 }
 
-module.exports = validateUser;
+function loginValidateUser(user) {
+    const schema = joi.object({
+        userName: joi.string(),
+        email: joi.string().email(),
+        password: joi.string()
+    }).xor('userName', 'email');
+
+    return schema.validate(user);
+}
+module.exports = { validateUser, loginValidateUser };

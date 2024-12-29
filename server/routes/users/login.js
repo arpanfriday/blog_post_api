@@ -12,8 +12,8 @@ router.post('/login', async (req, res) => {
     const user = await User.findOne(
         {
             $or: [
-                { email: req.body.email },
-                { userName: req.body.userName }
+                { email: req.body.loginString },
+                { userName: req.body.loginString }
             ]
         }
     );

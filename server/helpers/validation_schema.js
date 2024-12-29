@@ -19,10 +19,9 @@ function validateUser(user) {
 
 function loginValidateUser(user) {
     const schema = joi.object({
-        userName: joi.string(),
-        email: joi.string().email(),
-        password: joi.string()
-    }).xor('userName', 'email');
+        loginString: joi.string().required(),
+        password: joi.string().required()
+    });
 
     return schema.validate(user);
 }

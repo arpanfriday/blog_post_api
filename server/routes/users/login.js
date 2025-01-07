@@ -3,6 +3,7 @@ const router = express.Router();
 const createError = require('http-errors');
 const User = require('../../models/User');
 const { loginValidateUser } = require('../../helpers/validation_schema')
+const { signAccessToken, signRefreshToken } = require('../../helpers/jwt_helper')
 
 router.post('/login', async (req, res) => {
     const { error } = await loginValidateUser(req.body);
@@ -22,8 +23,9 @@ router.post('/login', async (req, res) => {
     const result = await user.validatePassword(req.body.password);
     if (!result)
         throw createError.Unauthorized('Failed to authenticate. Please retry');
-
-    res.send(result);
+    const accessToken = await signAccessToken(user._id, user.userName);
+    const refreshToken = await signRefreshToken(user._id, user.userName);
+    res.send({ 'accessToken': accessToken, 'refreshToken': refreshToken });
 })
 
 module.exports = router;

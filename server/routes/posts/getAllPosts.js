@@ -1,10 +1,11 @@
 const express = require('express');
 const Post = require('../../models/Post'); // Assuming you have a Post model
+const { verifyAccessToken } = require('../../helpers/jwt_helper')
 
 const router = express.Router();
 
 // Route to get all posts with pagination
-router.get('/posts', async (req, res) => {
+router.get('/posts', verifyAccessToken, async (req, res) => {
     try {
         const page = parseInt(req.query.page) || 1;
         const limit = parseInt(req.query.limit) || 10;

@@ -13,7 +13,8 @@ router.post("/create", async (req, res) => {
         const dataToInsert = {
             blog_id: count + 1,
             title: req.body.title,
-            body: req.body.body
+            body: req.body.body,
+            owner: req.body.owner
         }
 
         response = await Post.create(dataToInsert);

@@ -17,4 +17,12 @@ function validateUser(user) {
     return schema.validate(user);
 }
 
-module.exports = validateUser;
+function loginValidateUser(user) {
+    const schema = joi.object({
+        loginString: joi.string().required(),
+        password: joi.string().required()
+    });
+
+    return schema.validate(user);
+}
+module.exports = { validateUser, loginValidateUser };

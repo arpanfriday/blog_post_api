@@ -1,12 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const Post = require("../../models/Post")
+const { verifyAccessToken } = require('../../helpers/jwt_helper')
 
 /**
  * GET /
  * Post with ID
  */
-router.get("/post/:id", async (req, res) => {
+router.get("/post/:id", verifyAccessToken, async (req, res) => {
     try {
         let slug = req.params.id;
 

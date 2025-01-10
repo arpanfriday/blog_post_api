@@ -11,7 +11,11 @@ router.put("/post/:id", async (req, res) => {
         let slug = req.params.id;
         const result = await Post.updateOne(
             { blog_id: slug }, // Filter condition
-            { title: req.body.title, body: req.body.body }  // Update fields
+            {
+                title: req.body.title,
+                body: req.body.body,
+                owner: req.body.owner,
+            }  // Update fields
         );
         res.status(200).json({
             message: 'Post updated successfully',

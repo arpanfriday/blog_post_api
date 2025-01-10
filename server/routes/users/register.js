@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 const User = require('../../models/User');
-const validateUser = require('../../helpers/validation_schema')
+const { validateUser } = require('../../helpers/validation_schema')
 
 router.post('/register', async (req, res) => {
     const { error } = validateUser(req.body);

@@ -11,7 +11,7 @@ const signAccessToken = (userId, userName) => {
         };
         const options = {
             issuer: 'abc.tech',
-            expiresIn: '20s'
+            expiresIn: '10m'
         };
 
         jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, options, (err, token) => {
@@ -78,7 +78,7 @@ const signRefreshToken = (userId, userName) => {
         };
         const options = {
             issuer: 'abc.tech',
-            expiresIn: '30s'
+            expiresIn: '7d'
         };
         jwt.sign(payload, process.env.REFRESH_TOKEN_SECRET, options, (err, token) => {
             if (err) {
